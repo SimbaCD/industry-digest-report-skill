@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>行业动态月刊 · 深蓝紫版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   TEMPLATE: 深蓝紫 Nocturne
+   Layout:   Magazine grid — lead article spans full
+             width, rest in alternating 2-col cards
+   Palette:  Midnight violet · Brass · Ivory
+   Vibe:     Authoritative financial / legal review
+   ══════════════════════════════════════════════ */
+
+:root {
+  --night:    #0d0b14;
+  --violet:   #1c1330;
+  --violet-md:#2e1f52;
+  --violet-lt:#3d2a70;
+  --brass:    #b8963e;
+  --brass-lt: #f7f0e0;
+  --ivory:    #f8f5ee;
+  --ivory-dk: #ede8dd;
+  --mist:     #b8b0cc;
+  --rule:     #2e2548;
+  --rule-lt:  #e8e3d8;
+  --card-bg:  #f9f7f2;
+  --ink:      #13101e;
+  --ink2:     #2a2240;
+
+  --c1: #4a2d8c;   /* deep violet  */
+  --c2: #8c2d2d;   /* burgundy     */
+  --c3: #1d4b8c;   /* midnight blue*/
+  --c4: #2d6b4a;   /* bottle green */
+  --c5: #7a5c1e;   /* antique gold */
+
+  --serif:  'Playfair Display', 'Noto Serif SC', serif;
+  --body:   'Libre Baskerville', 'Noto Serif SC', serif;
+  --sans:   'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ── Progress ── */
+#prog {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--violet-lt), var(--brass));
+  width: 0; z-index: 9999;
+  pointer-events: none; transition: width .12s;
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 0 0 100px; }
+
+/* ════════════════════════════
+   DARK HEADER BAND
+   ════════════════════════════ */
+.header-band {
+  background: var(--night);
+  padding: 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle dot-grid texture */
+.header-band::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(184,150,62,.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* diagonal rule decoration */
+.header-band::after {
+  content: '';
+  position: absolute;
+  right: -60px; top: 0; bottom: 0;
+  width: 180px;
+  background: linear-gradient(135deg, transparent 50%, rgba(184,150,62,.06) 50%);
+  pointer-events: none;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  z-index: 1;
+}
+.header-firm {
+  font-family: var(--sans);
+  font-size: 10.5px; font-weight: 300;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: var(--mist);
+}
+.header-date-row {
+  font-family: var(--sans);
+  font-size: 10.5px; color: var(--mist);
+  letter-spacing: .1em;
+}
+
+.header-main {
+  padding: 40px 0 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+  position: relative; z-index: 1;
+}
+.header-title-group {}
+.header-eyebrow {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 400;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 14px;
+}
+.header-title {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5.5vw, 62px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.header-title em {
+  font-style: italic;
+  color: var(--brass);
+}
+.header-tagline {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--mist);
+  margin-top: 12px;
+  letter-spacing: .04em;
+}
+
+.header-issue-block {
+  text-align: right;
+  border-left: 1px solid var(--rule);
+  padding-left: 28px;
+  flex-shrink: 0;
+}
+.issue-big {
+  font-family: var(--serif);
+  font-size: 72px; font-weight: 900;
+  line-height: 1;
+  color: var(--brass);
+  display: block;
+  letter-spacing: -.04em;
+}
+.issue-label {
+  font-family: var(--sans);
+  font-size: 10px; color: var(--mist);
+  letter-spacing: .24em; text-transform: uppercase;
+  margin-top: 4px; display: block;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+  position: relative; z-index: 1;
+  gap: 12px; flex-wrap: wrap;
+}
+.header-info {
+  font-family: var(--sans);
+  font-size: 11px; color: var(--mist);
+  letter-spacing: .08em;
+}
+.header-info strong { color: var(--brass); font-weight: 500; }
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid rgba(184,150,62,.4);
+  background: rgba(184,150,62,.08);
+  color: var(--brass); font-family: var(--sans);
+  font-size: 11px; letter-spacing: .1em;
+  padding: 6px 16px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.dl-btn:hover { background: rgba(184,150,62,.18); border-color: var(--brass); }
+
+/* ════════════════════════════
+   STAT BAR (on ivory)
+   ════════════════════════════ */
+.stat-bar {
+  background: var(--night);
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 1px;
+  margin-bottom: 0;
+  border-bottom: 3px solid var(--brass);
+}
+.stat-cell {
+  background: var(--violet);
+  padding: 18px 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: background .18s;
+  position: relative;
+}
+.stat-cell:hover { background: var(--violet-md); }
+.stat-cell::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--cell-color, var(--brass));
+  opacity: 0; transition: opacity .18s;
+}
+.stat-cell:hover::before { opacity: 1; }
+.stat-n {
+  display: block;
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 700;
+  color: var(--cell-color, var(--brass));
+  line-height: 1;
+}
+.stat-lbl {
+  display: block;
+  font-family: var(--sans);
+  font-size: 9.5px; color: var(--mist);
+  letter-spacing: .12em; margin-top: 6px;
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════
+   CONTENT WRAPPER
+   ════════════════════════════ */
+.content { padding: 40px 40px 0; }
+
+/* ── Lead article ── */
+.lead-strip {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
+}
+.lead-strip-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--brass), transparent);
+}
+.lead-strip-label {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--brass);
+  white-space: nowrap;
+}
+
+.lead-card {
+  background: var(--violet);
+  padding: 32px 36px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.lead-card::after {
+  content: '';
+  position: absolute;
+  right: -40px; bottom: -40px;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(184,150,62,.15);
+  border-radius: 50%;
+}
+.lead-card::before {
+  content: '';
+  position: absolute;
+  right: -10px; bottom: -10px;
+  width: 120px; height: 120px;
+  border: 1px solid rgba(184,150,62,.08);
+  border-radius: 50%;
+}
+.lead-card h2 {
+  font-family: var(--serif);
+  font-size: 11px; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--brass); margin-bottom: 16px;
+}
+.lead-card p {
+  font-family: var(--body);
+  font-size: 15px; line-height: 2;
+  color: rgba(255,255,255,.82);
+  text-indent: 2em;
+  position: relative; z-index: 1;
+}
+.lead-card p + p { margin-top: 10px; }
+.lead-notice {
+  margin-top: 18px; padding: 10px 16px;
+  border: 1px solid rgba(184,150,62,.25);
+  font-family: var(--sans);
+  font-size: 11px; color: rgba(255,255,255,.45);
+  position: relative; z-index: 1;
+}
+
+/* ── Section Nav ── */
+#sec-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--night);
+  display: flex; overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 -40px 32px;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--rule);
+}
+#sec-nav::-webkit-scrollbar { display: none; }
+#sec-nav button {
+  flex-shrink: 0;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 11px;
+  font-weight: 300; letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--mist);
+  padding: 13px 18px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s;
+  white-space: nowrap;
+}
+#sec-nav button.active { color: var(--brass); border-bottom-color: var(--brass); }
+#sec-nav button:hover { color: #fff; }
+
+/* ── Section header ── */
+.sec-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0 20px;
+}
+.sec-name {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--sec-color, var(--c1));
+  white-space: nowrap;
+}
+.sec-rule { height: 1px; background: var(--rule-lt); }
+.sec-count {
+  font-family: var(--sans);
+  font-size: 10px; color: #aaa;
+  letter-spacing: .08em; white-space: nowrap;
+}
+
+/* ── Special report ── */
+.sp-block {
+  border: 1px solid var(--rule-lt);
+  margin-bottom: 20px;
+  background: var(--card-bg);
+}
+.sp-head {
+  background: var(--sec-color, var(--c1));
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--sans);
+  font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: #fff;
+}
+.sp-tag {
+  background: var(--brass); color: var(--ink);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .18em; padding: 2px 10px;
+  flex-shrink: 0;
+}
+.sp-title {
+  font-family: var(--serif);
+  font-size: 17px; font-weight: 700;
+  padding: 16px 20px 4px;
+  line-height: 1.4; color: var(--ink);
+}
+.sp-body { padding: 8px 20px 18px; }
+.sp-body p {
+  font-family: var(--body);
+  font-size: 14px; line-height: 2;
+  text-indent: 2em; color: var(--ink2);
+}
+.sp-body p + p { margin-top: 8px; }
+
+/* ── MAGAZINE GRID ── */
+/* Two column for normal articles */
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-lt);
+  border: 1px solid var(--rule-lt);
+  margin-bottom: 4px;
+}
+/* full-width feature card */
+.article-grid .card-feature {
+  grid-column: 1 / -1;
+}
+
+.art-card {
+  background: var(--card-bg);
+  padding: 22px 20px;
+  display: flex; flex-direction: column;
+  gap: 0;
+}
+.art-card.card-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 28px;
+  padding: 24px 24px;
+}
+.art-card.card-feature .art-left {}
+.art-card.card-feature .art-right {
+  display: flex; flex-direction: column; gap: 12px;
+  border-left: 1px solid var(--rule-lt);
+  padding-left: 28px;
+}
+
+.art-num {
+  font-family: var(--serif);
+  font-size: 11px; color: var(--sec-color, var(--c1));
+  letter-spacing: .12em; margin-bottom: 8px;
+  opacity: .6;
+}
+.art-title {
+  font-family: var(--serif);
+  font-size: 15.5px; font-weight: 700;
+  line-height: 1.5; margin-bottom: 8px;
+}
+.art-title a { color: var(--ink); text-decoration: none; }
+.art-title a:hover { color: var(--sec-color, var(--c1)); }
+.card-feature .art-title { font-size: 18px; }
+
+.art-byline {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--sans); font-size: 10.5px;
+  color: #aaa; margin-bottom: 10px; flex-wrap: wrap;
+}
+.src-tag {
+  background: var(--sec-color, var(--c1));
+  color: #fff; opacity: .9;
+  font-size: 9.5px; letter-spacing: .06em;
+  padding: 1px 9px;
+}
+.badge {
+  font-size: 9px; letter-spacing: .06em;
+  padding: 1px 7px; border: 1px solid;
+}
+.badge-full  { color: #2d7a2d; border-color: #b0d8b0; }
+.badge-rss   { color: #8a6000; border-color: #d4a840; }
+.badge-review{ color: #8c2020; border-color: #d48080; }
+
+.art-summary {
+  font-family: var(--body);
+  font-size: 13.5px; line-height: 1.95;
+  color: var(--ink2); text-indent: 2em;
+  flex: 1;
+}
+
+/* key facts in card */
+.art-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px,1fr));
+  gap: 1px; background: var(--rule-lt);
+  border: 1px solid var(--rule-lt);
+  margin-top: 14px;
+}
+.art-fact {
+  background: var(--violet);
+  padding: 10px 10px; text-align: center;
+}
+.fv {
+  display: block;
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 700;
+  color: var(--brass); line-height: 1;
+}
+.fl {
+  display: block; font-family: var(--sans);
+  font-size: 9.5px; color: rgba(255,255,255,.6);
+  letter-spacing: .05em; margin-top: 3px;
+}
+.fc {
+  display: block; font-size: 9px;
+  color: rgba(255,255,255,.38); margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* visual block in card */
+.art-vblock {
+  margin-top: 12px;
+  border: 1px solid var(--rule-lt);
+}
+.vb-head {
+  padding: 5px 12px;
+  background: rgba(0,0,0,.03);
+  border-bottom: 1px solid var(--rule-lt);
+  font-family: var(--sans);
+  font-size: 9.5px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--sec-color, var(--c1));
+}
+.vb-row {
+  padding: 5px 12px;
+  font-family: var(--body);
+  font-size: 13px; line-height: 1.65;
+  color: var(--ink2);
+  border-bottom: 1px solid var(--rule-lt);
+  display: flex; gap: 8px;
+}
+.vb-row:last-child { border-bottom: none; }
+.vb-row::before { content: '›'; color: var(--sec-color, var(--brass)); flex-shrink: 0; }
+
+/* pro note in card */
+.art-note {
+  margin-top: 12px; padding: 8px 12px;
+  background: #fdf2f2;
+  border-left: 2px solid #c0392b;
+  font-family: var(--body);
+  font-size: 13px; line-height: 1.85;
+  color: #5a1010; cursor: pointer;
+}
+.art-note strong { color: #c0392b; font-weight: 600; font-style: italic; }
+.note-toggle { font-size: 10px; opacity: .6; margin-left: 5px; font-style: normal; font-family: var(--sans); }
+.note-body { display: none; margin-top: 7px; }
+.art-note.open .note-body { display: block; }
+
+/* ── About ── */
+.about-block {
+  margin-top: 56px; padding-top: 28px;
+  border-top: 1px solid var(--rule-lt);
+}
+.about-label {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--c5); margin-bottom: 14px;
+}
+.about-block p {
+  font-family: var(--body);
+  font-size: 13.5px; line-height: 1.9;
+  text-indent: 2em; color: #777;
+}
+.about-block p + p { margin-top: 8px; }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px 32px; margin-top: 20px;
+}
+.contact-item {
+  font-family: var(--sans);
+  font-size: 12px; line-height: 1.8; color: var(--ink2);
+}
+.contact-item strong {
+  display: block; margin-bottom: 4px;
+  font-family: var(--serif);
+  font-size: 14px; color: var(--c1);
+}
+.contact-item a { color: var(--c1); text-decoration: none; }
+
+.page-footer {
+  margin-top: 44px; text-align: center;
+  font-family: var(--sans);
+  font-size: 10px; color: #bbb;
+  letter-spacing: .18em; text-transform: uppercase;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-lt);
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .header-band, .content { padding-left: 20px; padding-right: 20px; }
+  .header-main { grid-template-columns: 1fr; }
+  .header-issue-block { border-left: none; padding-left: 0; text-align: left; }
+  .issue-big { font-size: 48px; }
+  .stat-bar { grid-template-columns: repeat(3,1fr); }
+  .article-grid { grid-template-columns: 1fr; }
+  .art-card.card-feature { grid-template-columns: 1fr; }
+  .art-card.card-feature .art-right { border-left: none; padding-left: 0; border-top: 1px solid var(--rule-lt); padding-top: 16px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  #sec-nav { margin: 0 -20px 32px; padding: 0 20px; }
+  .art-facts { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="page">
+
+<!-- ════ DARK HEADER ════ -->
+<div class="header-band">
+  <div class="header-top">
+    <span class="header-firm">{{机构全称}} · {{专业团队/委员会名称}}</span>
+    <span class="header-date-row">{{年份}}.{{月份}}</span>
+  </div>
+  <div class="header-main">
+    <div class="header-title-group">
+      <div class="header-eyebrow">行业动态月度观察</div>
+      <div class="header-title">{{刊物<em>名称</em>}}</div>
+      <div class="header-tagline">{{英文副标题 · Monthly Intelligence Review}}</div>
+    </div>
+    <div class="header-issue-block">
+      <span class="issue-big">{{期数}}</span>
+      <span class="issue-label">Issue · 期</span>
+    </div>
+  </div>
+  <div class="header-bottom">
+    <span class="header-info">
+      采集：<strong>{{开始日期}}</strong> — <strong>{{结束日期}}</strong>
+      &ensp;·&ensp; 来源：{{数据来源}}
+      &ensp;·&ensp; 入选：<strong>{{总条数}}</strong> 条
+    </span>
+    <button class="dl-btn" onclick="dlReport()">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      离线下载
+    </button>
+  </div>
+</div>
+
+<!-- ════ STAT BAR ════ -->
+<div class="stat-bar">
+  <a class="stat-cell" href="#s1" style="--cell-color:#9b7ad4">
+    <span class="stat-n">{{n1}}</span><span class="stat-lbl">{{栏目1}}</span>
+  </a>
+  <a class="stat-cell" href="#s2" style="--cell-color:#d47a7a">
+    <span class="stat-n">{{n2}}</span><span class="stat-lbl">{{栏目2}}</span>
+  </a>
+  <a class="stat-cell" href="#s3" style="--cell-color:#7aaad4">
+    <span class="stat-n">{{n3}}</span><span class="stat-lbl">{{栏目3}}</span>
+  </a>
+  <a class="stat-cell" href="#s4" style="--cell-color:#7ad4a8">
+    <span class="stat-n">{{n4}}</span><span class="stat-lbl">{{栏目4}}</span>
+  </a>
+  <a class="stat-cell" href="#s5" style="--cell-color:var(--brass)">
+    <span class="stat-n">{{n5}}</span><span class="stat-lbl">{{栏目5}}</span>
+  </a>
+</div>
+
+<!-- ════ CONTENT ════ -->
+<div class="content">
+
+<!-- ── Lead ── -->
+<div class="lead-strip">
+  <div class="lead-strip-label">本 期 导 读</div>
+  <div class="lead-strip-line"></div>
+</div>
+<div class="lead-card">
+  <h2>编 辑 导 语</h2>
+  <p>{{导读第一段，约120字，从行业全局视角总述本月最重要的动态主线与核心变化。}}</p>
+  <p>{{导读第二段，约100字，聚焦政策法规层面的核心约束与实务影响。}}</p>
+  <p>{{导读第三段，约100字，国际/跨境动态及对机构的专业应对建议。}}</p>
+  <div class="lead-notice">本期导读由 AI 基于 {{ready条数}} 篇完整正文生成 · 修改写作风格请调整 editorial_rules.md</div>
+</div>
+
+<!-- ── Nav ── -->
+<nav id="sec-nav">
+  <button class="active" onclick="filterSec(this,'')">全 部</button>
+  <button onclick="filterSec(this,'s1')">{{栏目1}}</button>
+  <button onclick="filterSec(this,'s2')">{{栏目2}}</button>
+  <button onclick="filterSec(this,'s3')">{{栏目3}}</button>
+  <button onclick="filterSec(this,'s4')">{{栏目4}}</button>
+  <button onclick="filterSec(this,'s5')">{{栏目5}}</button>
+</nav>
+
+<!-- ══ SECTION 1 ══ -->
+<div class="sec-block" id="s1">
+  <div class="sec-header">
+    <div class="sec-name" style="--sec-color:var(--c1)">{{栏目1}}</div>
+    <div class="sec-rule"></div>
+    <div class="sec-count">{{n1}} 条</div>
+  </div>
+
+  <!-- 特别报道 -->
+  <div class="sp-block">
+    <div class="sp-head" style="--sec-color:var(--c1);background:var(--c1)">
+      <span class="sp-tag">特 别 报 道</span>
+      {{特别报道主题分类}}
+    </div>
+    <div class="sp-title">{{特别报道标题}}</div>
+    <div class="sp-body">
+      <p>{{特别报道段一，约150字，从专业视角分析本期最重要事件的背景、政策内容及核心意义。}}</p>
+      <p>{{特别报道段二，约150字，聚焦对行业参与者的实务影响及具体应对建议。}}</p>
+    </div>
+  </div>
+
+  <!-- Magazine grid: first card spans full width as feature -->
+  <div class="article-grid">
+    <div class="art-card card-feature" style="--sec-color:var(--c1)">
+      <div class="art-left">
+        <div class="art-num">01</div>
+        <div class="art-title">
+          <a href="{{URL}}" target="_blank" rel="noopener noreferrer">{{重要文章标题，此处为全宽展示文章}}</a>
+        </div>
+        <div class="art-byline">
+          <span class="src-tag">{{来源媒体}}</span>
+          <span>{{发布日期}}</span>
+          <span class="badge badge-full">全文</span>
+        </div>
+        <div class="art-summary">{{摘要约180字，开篇点明核心事实，陈述关键数字与背景，禁用"有望""值得关注"等模糊词。此为本栏目首篇重要文章，全宽展示。}}</div>
+      </div>
+      <div class="art-right">
+        <div class="art-facts">
+          <div class="art-fact">
+            <span class="fv">{{数值1}}</span>
+            <span class="fl">{{指标1}}</span>
+            <span class="fc">{{说明1}}</span>
+          </div>
+          <div class="art-fact">
+            <span class="fv">{{数值2}}</span>
+            <span class="fl">{{指标2}}</span>
+            <span class="fc">{{说明2}}</span>
+          </div>
+          <div class="art-fact">
+            <span class="fv">{{数值3}}</span>
+            <span class="fl">{{指标3}}</span>
+            <span class="fc">{{说明3}}</span>
+          </div>
+        </div>
+        <div class="art-vblock" style="--sec-color:var(--c1)">
+          <div class="vb-head">{{信息块类型}} · {{标题}}</div>
+          <div class="vb-row">{{要点一}}</div>
+          <div class="vb-row">{{要点二}}</div>
+          <div class="vb-row">{{要点三}}</div>
+        </div>
+        <div class="art-note" onclick="toggleNote(this)">
+          <strong>专业要点</strong><span class="note-toggle">▸ 展开</span>
+          <div class="note-body">{{专业分析40-120字，具体说明法律/合规/业务影响及行动建议。}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-column normal cards -->
+    <div class="art-card" style="--sec-color:var(--c1)">
+      <div class="art-num">02</div>
+      <div class="art-title"><a href="#">{{文章标题}}</a></div>
+      <div class="art-byline">
+        <span class="src-tag">{{来源}}</span>
+        <span>{{日期}}</span>
+        <span class="badge badge-full">全文</span>
+      </div>
+      <div class="art-summary">{{摘要约120字，陈述核心事实与数字。}}</div>
+      <div class="art-note" onclick="toggleNote(this)">
+        <strong>专业要点</strong><span class="note-toggle">▸ 展开</span>
+        <div class="note-body">{{专业分析。}}</div>
+      </div>
+    </div>
+
+    <div class="art-card" style="--sec-color:var(--c1)">
+      <div class="art-num">03</div>
+      <div class="art-title"><a href="#">{{文章标题示例三}}</a></div>
+      <div class="art-byline">
+        <span class="src-tag">{{来源}}</span>
+        <span>{{日期}}</span>
+        <span class="badge badge-rss">RSS摘要</span>
+      </div>
+      <div class="art-summary">{{RSS摘要来源限80字，只写RSS中明确包含的信息，不推断不补充。}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 2 ══ -->
+<div class="sec-block" id="s2">
+  <div class="sec-header">
+    <div class="sec-name" style="--sec-color:var(--c2)">{{栏目2}}</div>
+    <div class="sec-rule"></div>
+    <div class="sec-count">{{n2}} 条</div>
+  </div>
+  <div class="article-grid">
+    <div class="art-card" style="--sec-color:var(--c2)">
+      <div class="art-num">01</div>
+      <div class="art-title"><a href="#">{{文章标题}}</a></div>
+      <div class="art-byline"><span class="src-tag">{{来源}}</span><span>{{日期}}</span><span class="badge badge-full">全文</span></div>
+      <div class="art-summary">{{摘要内容}}</div>
+    </div>
+    <div class="art-card" style="--sec-color:var(--c2)">
+      <div class="art-num">02</div>
+      <div class="art-title"><a href="#">{{文章标题}}</a></div>
+      <div class="art-byline"><span class="src-tag">{{来源}}</span><span>{{日期}}</span><span class="badge badge-full">全文</span></div>
+      <div class="art-summary">{{摘要内容}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── About ── -->
+<div class="about-block">
+  <div class="about-label">关 于 本 刊</div>
+  <p>{{刊物简介约100字，说明主办机构、出版目的、内容覆盖范围和面向读者群体。}}</p>
+  <p>{{发展历程或版本升级说明约80字。}}</p>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <strong>{{办公室}}</strong>
+      {{联系人}} · {{电话}}<br/>
+      <a href="mailto:{{邮箱}}">{{邮箱}}</a><br/>
+      <span style="font-size:11px;color:#aaa">{{地址}}</span>
+    </div>
+    <div class="contact-item">
+      <strong>{{办公室2}}</strong>
+      {{联系人}} · {{电话}}<br/>
+      <a href="mailto:{{邮箱}}">{{邮箱}}</a><br/>
+      <span style="font-size:11px;color:#aaa">{{地址}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  {{刊物名称}} &ensp;·&ensp; Vol.{{期数}} &ensp;·&ensp; {{年份}}.{{月份}} &ensp;·&ensp; AI Generated
+</div>
+
+</div><!-- /content -->
+</div><!-- /page -->
+
+<script>
+(function(){var b=document.getElementById('prog');if(!b)return;window.addEventListener('scroll',function(){var h=document.documentElement;b.style.width=Math.min((h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100,100)+'%';},{passive:true});})();
+function filterSec(btn,sec){
+  document.querySelectorAll('#sec-nav button').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.sec-block').forEach(function(el){
+    el.style.display=(!sec||el.id===sec)?'':'none';
+  });
+}
+function toggleNote(el){
+  el.classList.toggle('open');
+  var t=el.querySelector('.note-toggle');
+  if(t)t.textContent=el.classList.contains('open')?'▾ 收起':'▸ 展开';
+}
+function dlReport(){
+  try{
+    var blob=new Blob(['<!doctype html>\n'+document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url;a.download='industry-report.html';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},200);
+  }catch(e){alert('请在浏览器（非微信内）中打开后再下载。');}
+}
+</script>
+</body>
+</html>

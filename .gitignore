@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local WeRSS data and generated reports
+werss-data/
+outputs/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+db.db
+database.sqlite
+
+# Local project/private config variants
+.env
+.env.*
+config.local.json
+themes/*.local.json
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

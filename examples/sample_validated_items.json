@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Example Industry Digest",
+    "subtitle": "Monthly Intelligence Review",
+    "organization": "Example Research Team",
+    "issue": "1",
+    "source_label": "WeRSS local full text",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30"
+  },
+  "guide": [
+    "This month, the example sector shows a clear interaction between policy implementation, supply-chain planning, and project-level execution. Several updates indicate that regulators and companies are moving from broad directional statements to practical milestones.",
+    "For editors, the key task is to separate routine notices from developments that affect investment timing, compliance obligations, technology choices, or cross-border coordination."
+  ],
+  "sections": [
+    "Policy Updates",
+    "Market Updates",
+    "Professional Updates"
+  ],
+  "articles": [
+    {
+      "section": "Policy Updates",
+      "title": "Example regulator releases implementation guidance for priority projects",
+      "url": "https://example.com/policy-guidance",
+      "source": "Example Government Source",
+      "pub_date": "2026-04-03",
+      "summary": "The guidance clarifies how priority projects should document project scope, approval status, environmental safeguards, and follow-up reporting. It gives market participants a more concrete basis for judging whether a project is ready for execution.",
+      "key_facts": [
+        {
+          "label": "Documents",
+          "value": "4",
+          "context": "Core materials required for review"
+        },
+        {
+          "label": "Deadline",
+          "value": "30 days",
+          "context": "Suggested review window"
+        }
+      ],
+      "visual_blocks": [
+        {
+          "type": "Process",
+          "title": "Review path",
+          "items": [
+            "Confirm project category and competent authority",
+            "Prepare approval, land, environmental, and safety materials",
+            "Track post-approval reporting obligations"
+          ]
+        }
+      ],
+      "note": "Editors may highlight whether the guidance changes approval timing, documentation burden, or ongoing reporting expectations."
+    },
+    {
+      "section": "Market Updates",
+      "title": "Example company announces a capacity expansion plan",
+      "url": "https://example.com/company-expansion",
+      "source": "Example Business Media",
+      "pub_date": "2026-04-12",
+      "summary": "The company announced a staged expansion plan intended to improve supply resilience and shorten delivery cycles for major customers. The article also notes that execution will depend on equipment procurement and local permitting progress.",
+      "key_facts": [
+        {
+          "label": "Investment",
+          "value": "100M",
+          "context": "Illustrative planned amount"
+        },
+        {
+          "label": "Phase",
+          "value": "2",
+          "context": "Staged construction plan"
+        }
+      ],
+      "visual_blocks": [
+        {
+          "type": "Impact",
+          "title": "Business focus",
+          "items": [
+            "Capacity planning",
+            "Procurement schedule",
+            "Customer delivery commitments"
+          ]
+        }
+      ],
+      "note": "The follow-up issue is whether announced capacity can be matched by permits, financing, equipment delivery, and downstream demand."
+    },
+    {
+      "section": "Professional Updates",
+      "title": "Example professional organization publishes an annual ranking",
+      "url": "https://example.com/professional-ranking",
+      "source": "Example Professional Source",
+      "pub_date": "2026-04-21",
+      "summary": "The ranking records professional recognition across multiple practice areas and can be used as background material when describing service capability, but it should not be presented as a guarantee of future matter outcomes.",
+      "key_facts": [
+        {
+          "label": "Areas",
+          "value": "12",
+          "context": "Recognized practice areas"
+        },
+        {
+          "label": "People",
+          "value": "18",
+          "context": "Recognized professionals"
+        }
+      ],
+      "visual_blocks": [
+        {
+          "type": "Profile",
+          "title": "Recognition points",
+          "items": [
+            "Practice-area recognition",
+            "Professional capability signal",
+            "Use with accurate attribution"
+          ]
+        }
+      ],
+      "note": "Use recognition materials accurately and avoid language that implies guaranteed case or transaction results."
+    }
+  ],
+  "about": [
+    "This sample digest uses fictional data only. It is designed to verify the rendering contract and template styles without exposing any private source list or project output."
+  ],
+  "contacts": []
+}
