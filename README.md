@@ -138,6 +138,16 @@ The chart below is provided by Star History and shows the repository's GitHub st
   </a>
 </p>
 
+## About the Author
+
+The maintainer is a Chengdu-based litigation lawyer exploring practical AI workflows for legal and professional services. For more notes on legal AI, workflow automation, and industry-digest publishing, follow the WeChat public account below.
+
+<p align="center">
+  <img src="assets/wechat-qrcode.jpg" alt="WeChat public account QR code" width="180" />
+</p>
+
+- WeChat public account: `AI歧路花园`
+
 ## Project Structure
 
 ```text
@@ -149,6 +159,7 @@ references/
 scripts/
 templates/
 examples/
+assets/
 ```
 
 Generated user projects contain their own `config/`, `themes/`, `templates/`, `outputs/`, and optional `werss-data/`.
@@ -300,6 +311,16 @@ python scripts\industryctl.py select-template --project .\my-digest-project --te
   </a>
 </p>
 
+## 关于作者
+
+维护者 Base 成都，是一名诉讼律师，也长期探索 AI 在法律服务、专业服务和行业内容生产中的实际应用。欢迎关注公众号，获取更多法律 AI、工作流自动化和行业动态报告相关内容。
+
+<p align="center">
+  <img src="assets/wechat-qrcode.jpg" alt="公众号二维码" width="180" />
+</p>
+
+- 公众号：`AI歧路花园`
+
 ## 项目结构
 
 ```text
@@ -311,6 +332,7 @@ references/
 scripts/
 templates/
 examples/
+assets/
 ```
 
 用户生成的项目目录会包含自己的 `config/`、`themes/`、`templates/`、`outputs/`，以及可选的 `werss-data/`。
